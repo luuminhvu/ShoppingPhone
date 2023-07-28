@@ -1,8 +1,18 @@
 import React from "react";
 import { useGetAllProductsQuery } from "../../store/productApi";
 import "./Home.css";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cartSlice";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const { data, error, isLoading } = useGetAllProductsQuery();
+  const dispatch = useDispatch();
+  const history = useNavigate();
+  const handleAddToCart = (product) => {
+    console.log(product);
+    dispatch(addToCart(product));
+    history("/cart");
+  };
   return (
     <div className="home-container">
       {isLoading ? (
@@ -21,7 +31,14 @@ const Home = () => {
                   <span className="product_desc">{product.desc}</span>
                   <span className="product_price">{product.price} VNĐ</span>
                 </div>
-                <button className="add-to-cart">Add to cart</button>
+                <button
+                  onClick={() => {
+                    handleAddToCart(product);
+                  }}
+                  className="add-to-cart"
+                >
+                  Add to cart
+                </button>
               </div>
             ))}
           </div>
