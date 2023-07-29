@@ -1,9 +1,14 @@
 import React from "react";
 import "./Cart.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { removeFromCart } from "../../store/cartSlice";
 const Cart = () => {
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const handleRemoveCart = (product) => {
+    dispatch(removeFromCart(product));
+  };
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
@@ -45,7 +50,7 @@ const Cart = () => {
                   <div className="cart-item__product-info">
                     <h3>{item.name}</h3>
                     <p>{item.desc}</p>
-                    <button>Xoá</button>
+                    <button onClick={() => handleRemoveCart(item)}>Xoá</button>
                   </div>
                 </div>
                 <div className="cart-item__price">
@@ -68,7 +73,7 @@ const Cart = () => {
               <div className="cart-checkout__total">
                 <span>Tổng tiền</span>
                 <span className="cart-checkout__total-price">
-                  {cart.cartTotalAmount}
+                  {cart.cartTotalAmount} VNĐ
                 </span>
               </div>
               <p>Đã bao gồm VAT (nếu có)</p>

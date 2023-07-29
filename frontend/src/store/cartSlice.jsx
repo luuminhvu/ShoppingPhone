@@ -29,10 +29,21 @@ const cartSlice = createSlice({
       }
       localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
-    removeFromCart(state, action) {},
+    removeFromCart(state, action) {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex >= 0) {
+        state.cartItems.splice(itemIndex, 1);
+        toast.error(`${action.payload.name} removed`, {
+          position: toast.POSITION.BOTTOM_LEFT,
+        }); // Add this line
+      }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+    },
     updateQuantity(state, action) {},
     clearCart(state, action) {},
   },
 });
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
