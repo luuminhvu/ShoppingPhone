@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
+  clearCart,
   decreaseCartQuantity,
+  getTotal,
   increaseCartQuantity,
   removeFromCart,
 } from "../../store/cartSlice";
@@ -19,6 +21,13 @@ const Cart = () => {
   const handleIncreaseCart = (product) => {
     dispatch(increaseCartQuantity(product));
   };
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+  useEffect(() => {
+    dispatch(getTotal());
+  }, [cart, dispatch]);
+
   return (
     <div className="cart-container">
       <h2>Shopping Cart</h2>
@@ -78,7 +87,9 @@ const Cart = () => {
             ))}
           </div>
           <div className="cart-summary">
-            <button className="cart-clear">Xoá tất cả</button>
+            <button onClick={handleClearCart} className="cart-clear">
+              Xoá tất cả
+            </button>
             <div className="cart-checkout">
               <div className="cart-checkout__total">
                 <span>Tổng tiền</span>
