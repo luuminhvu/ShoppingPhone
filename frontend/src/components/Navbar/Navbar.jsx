@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/authSlice";
+import { toast } from "react-toastify";
 const Navbar = () => {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
   const totalQuantity = useSelector((state) => state.cart.cartTotalQuantity);
   // const [totalQuantity, setTotalQuantity] = useState(0);
   // useEffect(() => {
@@ -41,6 +45,24 @@ const Navbar = () => {
           <span className="nav-bag__quantity">{totalQuantity}</span>
         </div>
       </Link>
+      {auth._id ? (
+        <div className="nav-bar__logged">
+          <Link to="/profile">{auth.name}</Link>
+          <Link
+            onClick={() => {
+              dispatch(logout());
+              toast.success("Đăng xuất thành công");
+            }}
+          >
+            Đăng xuất
+          </Link>
+        </div>
+      ) : (
+        <div className="nav-bar__auth">
+          <Link to="/login">Đăng nhập</Link>
+          <Link to="/register">Đăng ký</Link>
+        </div>
+      )}
     </nav>
   );
 };

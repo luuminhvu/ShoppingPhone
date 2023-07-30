@@ -9,7 +9,6 @@ const Home = () => {
   const dispatch = useDispatch();
   const history = useNavigate();
   const handleAddToCart = (product) => {
-    console.log(product);
     dispatch(addToCart(product));
     history("/cart");
   };

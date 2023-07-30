@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./Cart.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   clearCart,
   decreaseCartQuantity,
@@ -10,8 +10,10 @@ import {
   removeFromCart,
 } from "../../store/cartSlice";
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+  const auth = useSelector((state) => state.auth);
   const handleRemoveCart = (product) => {
     dispatch(removeFromCart(product));
   };
@@ -98,7 +100,17 @@ const Cart = () => {
                 </span>
               </div>
               <p>Đã bao gồm VAT (nếu có)</p>
-              <button>Thanh toán</button>
+              {auth._id ? (
+                <button>Thanh Toán</button>
+              ) : (
+                <button
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                >
+                  Đăng nhập để thanh toán
+                </button>
+              )}
               <div className="continue-shopping">
                 <Link to="/">
                   <svg

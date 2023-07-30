@@ -6,31 +6,56 @@
   background-color: black;
   padding: 0 4rem;
 }
+
 .nav-bar h2 {
   font-size: 20px;
   font-weight: 500;
   color: white;
 }
+
 .nav-bar a {
   text-decoration: none;
   color: white;
 }
+
 .nav-bag {
   display: flex;
   align-items: center;
+  position: relative; /* Thêm thuộc tính này để tạo khung chứa cho .nav-bag_logo và .nav-bag__quantity */
 }
+
 .nav-bag_logo {
-  position: relative;
+  /* Xóa thuộc tính position: relative; để .nav-bag_logo không bị ảnh hưởng */
+  z-index: 10;
 }
+
 .nav-bag__quantity {
   position: absolute;
-  top: 30px;
-  right: 50px;
+  top: 4px; /* Điều chỉnh top cho phù hợp với vị trí mong muốn */
+  right: -10px; /* Điều chỉnh right cho phù hợp với vị trí mong muốn */
   color: white;
   border-radius: 50%;
   background: black;
   width: 20px;
   height: 20px;
   font-weight: 700;
+  display: flex;
   align-items: center;
+  justify-content: center;
+}
+.nav-bar__logged {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-bar__auth {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-bar__logged a {
+  margin-right: 1rem;
+}
+.nav-bar__auth a {
+  margin-right: 1rem;
 }

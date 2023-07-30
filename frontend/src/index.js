@@ -7,16 +7,19 @@ import { Provider } from "react-redux";
 import productSlice, { fetchProducts } from "./store/productSlice";
 import { productApi } from "./store/productApi";
 import cartSlice from "./store/cartSlice";
+import authSlice, { loadUser } from "./store/authSlice";
 const store = configureStore({
   reducer: {
     products: productSlice,
     cart: cartSlice,
+    auth: authSlice,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(productApi.middleware),
 });
 store.dispatch(fetchProducts());
+store.dispatch(loadUser());
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
