@@ -28,6 +28,21 @@ export const register = createAsyncThunk(
     }
   }
 );
+export const login = createAsyncThunk(
+  "auth/loginUser",
+  async (values, { rejectWithValue }) => {
+    try {
+      const token = await axios.post("http://localhost:5000/login", {
+        email: values.email,
+        password: values.password,
+      });
+      localStorage.setItem("token", token.data);
+      return token.data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
@@ -86,6 +101,30 @@ const authSlice = createSlice({
     builder.addCase(register.rejected, (state, action) => {
       state.registerStatus = "failed";
       state.registerError = action.payload;
+    });
+    builder.addCase(login.pending, (state, action) => {
+      return { ...state, loginStatus: "pending" };
+    });
+    builder.addCase(login.fulfilled, (state, action) => {
+      const user = jwtDecode(action.payload);
+      if (action.payload) {
+        return {
+          ...state,
+          token: action.payload,
+          name: user.name,
+          email: user.email,
+          _id: user._id,
+          loginStatus: "success",
+          loginError: "",
+          userLoaded: true,
+        };
+      } else {
+        return state;
+      }
+    });
+    builder.addCase(login.rejected, (state, action) => {
+      state.loginStatus = "failed";
+      state.loginError = action.payload;
     });
   },
 });

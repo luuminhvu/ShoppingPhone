@@ -9,6 +9,7 @@ import {
   increaseCartQuantity,
   removeFromCart,
 } from "../../store/cartSlice";
+import PayButton from "../PayButton/PayButton";
 const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -101,7 +102,7 @@ const Cart = () => {
               </div>
               <p>Đã bao gồm VAT (nếu có)</p>
               {auth._id ? (
-                <button>Thanh Toán</button>
+                <PayButton cartItems={cart.cartItems} />
               ) : (
                 <button
                   onClick={() => {

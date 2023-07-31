@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../../store/authSlice";
-import "./Register.css";
+import { login } from "../../store/authSlice";
+import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 
-const Register = () => {
+const Login = () => {
   const auth = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -20,7 +19,7 @@ const Register = () => {
   }, [auth._id, navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(register(user));
+    dispatch(login(user));
   };
 
   return (
@@ -28,7 +27,7 @@ const Register = () => {
       <div className="form-container">
         <div className="wrapper">
           <form onSubmit={handleSubmit}>
-            <h1>Đăng ký</h1>
+            <h1>Đăng nhập</h1>
             <div className="form-social">
               <Link to="#" className="social">
                 <svg
@@ -69,12 +68,8 @@ const Register = () => {
             </div>
 
             <div className="form-submit">
-              <span>hoặc sử dụng Email để đăng kí</span>
-              <input
-                type="text"
-                placeholder="Name"
-                onChange={(e) => setUser({ ...user, name: e.target.value })}
-              />
+              <span>hoặc sử dụng Email để đăng nhập</span>
+
               <input
                 type="email"
                 placeholder="Email"
@@ -89,11 +84,13 @@ const Register = () => {
                 Forgot your password?
               </Link>
               <button>
-                {auth.registerStatus === "pending" ? "Đang đăng ký" : "Đăng ký"}
+                {auth.loginStatus === "pending"
+                  ? "Đang đăng nhập"
+                  : "Đăng nhập"}
               </button>
               <div className="form-footer">
-                {auth.registerStatus === "failed" ? (
-                  <p> {auth.registerError}</p>
+                {auth.loginStatus === "failed" ? (
+                  <p> {auth.loginError}</p>
                 ) : null}
               </div>
             </div>
@@ -104,4 +101,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;

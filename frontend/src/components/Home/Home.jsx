@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useGetAllProductsQuery } from "../../store/productApi";
 import "./Home.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
