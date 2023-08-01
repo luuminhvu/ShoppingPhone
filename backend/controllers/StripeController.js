@@ -1,9 +1,17 @@
 import Stripe from "stripe";
 import dotenv from "dotenv";
 import path from "path";
+import Order from "../models/Order.js";
 dotenv.config({ path: path.join(path.resolve(), ".env") });
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY);
+
 export const checkout = async (req, res) => {
+  const customer = await stripe.customers.create({
+    metadata: {
+      userId: req.body.userId,
+      cart: JSON.stringify(req.body.cartItems),
+    },
+  });
   const line_items = req.body.cartItems.map((item) => {
     return {
       price_data: {
@@ -71,10 +79,73 @@ export const checkout = async (req, res) => {
     phone_number_collection: {
       enabled: true,
     },
+    customer: customer.id,
     line_items,
     mode: "payment",
     success_url: `${process.env.CLIENT_URL}/checkout-success`,
     cancel_url: `${process.env.CLIENT_URL}/cart`,
   });
   res.send({ url: session.url });
+};
+const createOrder = async (customer, data) => {
+  const Items = JSON.parse(customer.metadata.cart);
+  const newOrder = new Order({
+    userId: customer.metadata.userId,
+    customerId: data.customer,
+    paymentIntentId: data.payment_intent,
+    products: Items,
+    subtotal: data.amount,
+    total: data.amount_received,
+    shipping: data.shipping,
+    payment_status: data.status,
+  });
+  try {
+    const saveOrder = await newOrder.save();
+    console.log("Order saved: ", saveOrder);
+  } catch (err) {
+    console.log("Order save error: ", err);
+  }
+};
+export const webhook = async (req, res) => {
+  // Only verify the event if you have an endpoint secret defined.
+  // Otherwise use the basic event deserialized with JSON.parse
+  let data;
+  let eventType;
+  const endpointSecret =
+    "whsec_2bb4f08a131d00a6ce9bc88f31362dca74b67b9fc002e79ac2fc155499a96592";
+  if (endpointSecret) {
+    let event;
+    // Get the signature sent by Stripe
+    const signature = req.headers["stripe-signature"];
+    try {
+      event = stripe.webhooks.constructEvent(
+        req.rawBody,
+        signature,
+        endpointSecret
+      );
+    } catch (err) {
+      console.log(`⚠️  Webhook signature verification failed.`, err.message);
+      return res.sendStatus(400);
+    }
+    data = event.data.object;
+    eventType = event.type;
+  } else {
+    data = req.body.data.object;
+    eventType = req.body.type;
+  }
+  // Handle the event
+  switch (eventType) {
+    case "payment_intent.succeeded":
+      stripe.customers
+        .retrieve(data.customer)
+        .then((customer) => {
+          createOrder(customer, data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  }
+
+  // Return a 200 response to acknowledge receipt of the event
+  res.send().end();
 };
