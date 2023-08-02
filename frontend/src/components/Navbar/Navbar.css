@@ -5,6 +5,8 @@
   height: 70px;
   background-color: black;
   padding: 0 4rem;
+  position: sticky;
+  top: 0;
 }
 
 .nav-bar h2 {

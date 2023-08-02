@@ -47,7 +47,7 @@ const Navbar = () => {
       </Link>
       {auth._id ? (
         <div className="nav-bar__logged">
-          <Link to="/profile">{auth.name}</Link>
+          <Link to="/admin/summary">{auth.name}</Link>
           <Link
             onClick={() => {
               dispatch(logout());

@@ -35,6 +35,8 @@
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
+  width: 200px;
+  height: 200px;
 }
 .details {
   display: flex;

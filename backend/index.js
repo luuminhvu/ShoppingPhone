@@ -15,12 +15,13 @@ dotenv.config({ path: path.join(path.resolve(), ".env") });
 app.use(cors());
 app.use(
   bodyParser.json({
+    limit: "30mb",
     verify: function (req, res, buf) {
       req.rawBody = buf;
     },
   })
 );
-app.use(express.json());
+app.use(express.json({ limit: "30mb", extended: true }));
 app.get("/", (req, res) => {
   res.send("Hello World");
 }); // Sử dụng RegisterRouter thay vì RegisterRoutes

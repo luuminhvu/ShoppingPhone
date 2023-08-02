@@ -8,6 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import CheckoutSuccess from "./components/CheckoutSuccess";
+import Dashboard from "./components/Admin/Dashboard";
+import Products from "./components/Admin/Products";
+import Summary from "./components/Admin/Summary";
+import CreateProduct from "./components/Admin/CreateProduct";
 function App() {
   return (
     <div className="App">
@@ -20,6 +24,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route path="/not-found" element={<NotFound />} />
+          <Route path="/admin" element={<Dashboard />}>
+            <Route path="products" element={<Products />}>
+              <Route path="create-product" element={<CreateProduct />} />
+            </Route>
+            <Route path="summary" element={<Summary />} />
+          </Route>
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

@@ -1,0 +1,40 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+.dashboard-sidenav {
+  position: fixed;
+  width: 250px;
+  height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-y: auto;
+  border-right: 1px solid #e0e0e0;
+}
+.dashboard-sidenav h3 {
+  margin: 0 0 1rem 0;
+  padding: 0;
+  text-transform: uppercase;
+  font-size: 17px;
+}
+.dashboard-sidenav a {
+  text-decoration: none;
+  color: #000;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+.dashboard-content {
+  margin-left: 250px;
+  padding: 2rem;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  font-weight: 700;
+  position: fixed;
+}
+.dashboard-sidenav .active {
+  color: #ff0000;
+}
+.dashboard-sidenav .inactive {
+  color: #000;
+}

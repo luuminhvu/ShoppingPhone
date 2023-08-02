@@ -1,0 +1,67 @@
+/* CSS cho wrapper chung */
+.create-product {
+  margin: 20px auto;
+  max-width: 1024px; /* Đặt chiều rộng tùy ý */
+  display: flex; /* Chuyển sang kiểu flexbox để sắp xếp các phần tử bên trong */
+  align-items: flex-start; /* Căn chỉnh các phần tử bên trong lề trên */
+  justify-content: space-between;
+}
+
+.create-product h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* CSS cho form nhập liệu */
+.create-product__form {
+  flex: 1; /* Chiếm toàn bộ phần còn lại của container */
+  padding-right: 25px; /* Tạo khoảng cách với phần ảnh */
+}
+
+.create-product__form input,
+.create-product__form select {
+  margin: 5px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-product__form input[type="text"],
+.create-product__form select {
+  width: 100%;
+}
+
+/* CSS cho phần chọn hình ảnh */
+.create-product__form input[type="file"] {
+  margin-top: 10px;
+}
+.create-product__form button {
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* CSS cho xem trước hình ảnh đã chọn */
+.create-product__imgPrev {
+  width: 326px; /* Đặt chiều rộng tùy ý */
+  text-align: center;
+  margin-top: 43px;
+}
+
+.create-product__imgPrev img {
+  max-width: 100%;
+  max-height: 200px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.create-product__imgPrev p {
+  font-size: 14px;
+  color: #888;
+}

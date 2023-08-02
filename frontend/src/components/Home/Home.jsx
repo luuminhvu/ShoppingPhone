@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { useGetAllProductsQuery } from "../../store/productApi";
+import React from "react";
 import "./Home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cartSlice";
 import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const { data, error, isLoading } = useGetAllProductsQuery();
+  const { items: data, status } = useSelector((state) => state.products);
+  // const { data, error, isLoading } = useGetAllProductsQuery();
   const dispatch = useDispatch();
   const history = useNavigate();
   const handleAddToCart = (product) => {
@@ -14,18 +14,18 @@ const Home = () => {
   };
   return (
     <div className="home-container">
-      {isLoading ? (
+      {status === "pending" ? (
         <p>Loading</p>
-      ) : error ? (
+      ) : status === "rejected" ? (
         <p>An error occured</p>
       ) : (
         <>
           <h2>New Arrival</h2>
           <div className="products">
             {data.map((product) => (
-              <div className="product" key={product.id}>
+              <div className="product" key={product._id}>
                 <h3>{product.name}</h3>
-                <img src={product.image} alt={product.name} />
+                <img src={product.image.url} alt={product.name} />
                 <div className="details">
                   <span className="product_desc">{product.desc}</span>
                   <span className="product_price">{product.price} VNĐ</span>
