@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { setHeaders } from "./api";
 const initialState = {
   items: [],
   status: null,
@@ -19,8 +20,10 @@ export const createProduct = createAsyncThunk(
     try {
       const response = await axios.post(
         "http://localhost:5000/products",
-        product
+        product,
+        setHeaders()
       );
+      toast.success("Product created successfully");
       return response.data;
     } catch (error) {
       console.log(error);

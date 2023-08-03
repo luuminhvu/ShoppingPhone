@@ -4,9 +4,18 @@ const Products = () => {
   const navigate = useNavigate();
   return (
     <>
-      Products
-      <button onClick={() => navigate("/admin/products/create-product")}>
-        Create Product
+      <button
+        style={{
+          backgroundColor: "green",
+          color: "white",
+          padding: "10px",
+          borderRadius: "5px",
+          border: "none",
+          cursor: "pointer",
+        }}
+        onClick={() => navigate("/admin/products/create-product")}
+      >
+        Thêm sản phẩm
       </button>
       <Outlet />
     </>

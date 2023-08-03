@@ -19,6 +19,10 @@ const userSchema = new mongoose.Schema({
     minLenght: 3,
     maxLenght: 200,
   },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
 });
 const Users = mongoose.model("Users", userSchema);
 export default Users;
