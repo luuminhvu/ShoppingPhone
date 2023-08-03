@@ -5,6 +5,7 @@ import ProductRouter from "./routers/ProductRoutes.js"; // Sử dụng import th
 import RegisterRoutes from "./routers/RegisterRoutes.js"; // Sử dụng import thay vì require
 import LoginRoutes from "./routers/LoginRoutes.js";
 import StripeRoutes from "./routers/StripeRoutes.js";
+import UserRoutes from "./routers/UserRoutes.js";
 import dotenv from "dotenv"; // Sử dụng import thay vì require
 import path from "path";
 import bodyParser from "body-parser";
@@ -29,6 +30,7 @@ app.use("/", ProductRouter); // Sử dụng ProductRouter thay vì ProductRoutes
 app.use("/stripe", StripeRoutes);
 app.use("/login", LoginRoutes);
 app.use("/register", RegisterRoutes);
+app.use("/", UserRoutes);
 // Sử dụng RegisterRouter thay vì RegisterRoutes
 const port = process.env.PORT || 5000; // Sửa lại cổng là 5000, không phải 3001
 const URI = process.env.DB_URL; // Sửa lại tên biến là DB_URL, không phải MONGO_URL

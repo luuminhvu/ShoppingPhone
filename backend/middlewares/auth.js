@@ -11,6 +11,15 @@ const auth = (req, res, next) => {
     res.status(400).send("Invalid Token");
   }
 };
+const isUser = (req, res, next) => {
+  auth(req, res, () => {
+    if (req.user._id === req.params.id || req.user.isAdmin) {
+      next();
+    } else {
+      res.status(403).send("Access Denied");
+    }
+  });
+};
 const isAdmin = (req, res, next) => {
   auth(req, res, () => {
     if (req.user.isAdmin) {
@@ -20,4 +29,4 @@ const isAdmin = (req, res, next) => {
     }
   });
 };
-export { auth, isAdmin };
+export { auth, isAdmin, isUser };

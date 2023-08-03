@@ -31,6 +31,7 @@
   overflow-y: auto;
   font-weight: 700;
   position: fixed;
+  width: calc(100% - 250px);
 }
 .dashboard-sidenav .active {
   color: #ff0000;
