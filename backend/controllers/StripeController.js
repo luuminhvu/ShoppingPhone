@@ -11,6 +11,7 @@ export const checkout = async (req, res) => {
       userId: req.body.userId,
     },
   });
+  console.log("customer: ", customer);
   const line_items = req.body.cartItems.map((item) => {
     return {
       price_data: {
@@ -20,7 +21,7 @@ export const checkout = async (req, res) => {
           images: [item.image.url],
           description: item.desc,
           metadata: {
-            id: item.id,
+            id: item._id,
           },
         },
         unit_amount: item.price,
@@ -28,7 +29,7 @@ export const checkout = async (req, res) => {
       quantity: item.cartQuantity,
     };
   });
-  console.log("line_items: ", line_items);
+  console.log("line_items: ", line_items[0].price_data.product_data);
 
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
@@ -93,9 +94,9 @@ const createOrder = async (customer, data, lineItems) => {
     customerId: data.customer,
     paymentIntentId: data.payment_intent,
     products: lineItems.data,
-    subtotal: data.amount,
-    total: data.amount_received,
-    shipping: data.shipping,
+    subtotal: data.amount_subtotal,
+    total: data.amount_total,
+    shipping: data.customer_details,
     payment_status: data.status,
   });
   try {
@@ -134,7 +135,8 @@ export const webhook = async (req, res) => {
   }
   // Handle the event
   switch (eventType) {
-    case "payment_intent.succeeded":
+    case "checkout.session.completed":
+      console.log("data: ", data);
       stripe.customers
         .retrieve(data.customer)
         .then((customer) => {
@@ -142,7 +144,7 @@ export const webhook = async (req, res) => {
             data.id,
             {},
             function (err, lineItems) {
-              console.log(lineItems);
+              console.log("lineItems: ", lineItems);
               createOrder(customer, data, lineItems);
             }
           );
