@@ -10,7 +10,7 @@ const Widget = ({ data }) => {
       <Text>
         <h3>
           {data.isMoney
-            ? data.digits?.toLocaleString() + " VNĐ"
+            ? data.digits?.toLocaleString()
             : data.digits?.toLocaleString()}
         </h3>
         <p>{data.title}</p>

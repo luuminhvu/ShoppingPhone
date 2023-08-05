@@ -28,7 +28,7 @@ const Transactions = () => {
         <p>Loading...</p>
       ) : (
         <>
-          <h3>Latest Transactions</h3>
+          <h3>Giao dịch mới nhất</h3>
           {transactions.map((transaction, index) => (
             <Transaction key={index}>
               <p>{transaction.shipping.name}</p>

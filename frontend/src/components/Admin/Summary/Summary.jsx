@@ -6,6 +6,7 @@ import axios from "axios";
 import { setHeaders } from "../../../store/api";
 import Chart from "./Chart";
 import Transactions from "./Transactions";
+import AllTimeData from "./AllTimeData";
 
 const Summary = () => {
   const [users, setUsers] = useState([]);
@@ -121,6 +122,7 @@ const Summary = () => {
       </MainStats>
       <SideStats>
         <Transactions />
+        <AllTimeData />
       </SideStats>
     </StyledSummary>
   );

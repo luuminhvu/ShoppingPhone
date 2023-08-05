@@ -23,6 +23,13 @@
   color: #000;
   font-size: 14px;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+.dashboard-sidenav a svg {
+  margin-right: 1rem;
+  color: #000;
 }
 .dashboard-content {
   margin-left: 250px;
@@ -35,6 +42,9 @@
 }
 .dashboard-sidenav .active {
   color: #ff0000;
+  border-left: 3px solid #ff0000;
+  padding-left: 1rem;
+  border-radius: 2px;
 }
 .dashboard-sidenav .inactive {
   color: #000;
