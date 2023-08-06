@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaUsers, FaChartBar, FaClipboard, FaUser } from "react-icons/fa";
+import { FaUsers, FaChartBar, FaClipboard } from "react-icons/fa";
 import styled from "styled-components";
 import Widget from "./Widget";
 import axios from "axios";

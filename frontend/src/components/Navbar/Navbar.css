@@ -4,13 +4,13 @@
   align-items: center;
   height: 70px;
   background-color: black;
-  padding: 0 4rem;
+  padding: 0 2rem; /* Adjust padding for responsiveness */
   position: sticky;
   top: 0;
 }
 
 .nav-bar h2 {
-  font-size: 20px;
+  font-size: 18px; /* Adjust font size for responsiveness */
   font-weight: 500;
   color: white;
 }
@@ -23,41 +23,52 @@
 .nav-bag {
   display: flex;
   align-items: center;
-  position: relative; /* Thêm thuộc tính này để tạo khung chứa cho .nav-bag_logo và .nav-bag__quantity */
+  position: relative;
 }
 
 .nav-bag_logo {
-  /* Xóa thuộc tính position: relative; để .nav-bag_logo không bị ảnh hưởng */
   z-index: 10;
 }
 
 .nav-bag__quantity {
   position: absolute;
-  top: 4px; /* Điều chỉnh top cho phù hợp với vị trí mong muốn */
-  right: -10px; /* Điều chỉnh right cho phù hợp với vị trí mong muốn */
+  top: 6px; /* Adjust top for better positioning */
+  right: -12px; /* Adjust right for better positioning */
   color: white;
   border-radius: 50%;
   background: black;
-  width: 20px;
-  height: 20px;
+  width: 18px; /* Adjust width for better visibility */
+  height: 18px; /* Adjust height for better visibility */
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.nav-bar__logged {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
+.nav-bar__logged,
 .nav-bar__auth {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: none; /* Hide these sections on smaller screens */
 }
-.nav-bar__logged a {
-  margin-right: 1rem;
-}
-.nav-bar__auth a {
-  margin-right: 1rem;
+
+@media (min-width: 768px) {
+  /* Apply styles for screens with a minimum width of 768px */
+  .nav-bar h2 {
+    font-size: 20px;
+  }
+
+  .nav-bar {
+    padding: 0 4rem;
+  }
+
+  .nav-bar__logged,
+  .nav-bar__auth {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-bar__logged a,
+  .nav-bar__auth a {
+    margin-right: 1rem;
+  }
 }

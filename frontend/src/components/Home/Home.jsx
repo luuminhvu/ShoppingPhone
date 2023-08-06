@@ -23,7 +23,13 @@ const Home = () => {
           <h2>New Arrival</h2>
           <div className="products">
             {data.map((product) => (
-              <div className="product" key={product._id}>
+              <div
+                onClick={() => {
+                  history(`/product/${product._id}`);
+                }}
+                className="product"
+                key={product._id}
+              >
                 <h3>{product.name}</h3>
                 <img src={product.image.url} alt={product.name} />
                 <div className="details">

@@ -13,6 +13,11 @@ import Products from "./components/Admin/Products";
 import Summary from "./components/Admin/Summary";
 import CreateProduct from "./components/Admin/CreateProduct";
 import ListProducts from "./components/Admin/Products/ListProducts/ListProducts";
+import Order from "./components/Admin/Orders/Order";
+import Users from "./components/Admin/Users/Users";
+import ProductDetail from "./components/Admin/Detail/ProductDetail";
+import OrderDetail from "./components/Admin/Detail/OrderDetail";
+import UserDetail from "./components/Admin/Detail/UserDetail";
 function App() {
   return (
     <div className="App">
@@ -25,11 +30,16 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/checkout-success" element={<CheckoutSuccess />} />
           <Route path="/not-found" element={<NotFound />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/orders/:id" element={<OrderDetail />} />
+          <Route path="/users/:id" element={<UserDetail />} />
           <Route path="/admin" element={<Dashboard />}>
             <Route path="products" element={<Products />}>
               <Route index element={<ListProducts />} />
               <Route path="create-product" element={<CreateProduct />} />
             </Route>
+            <Route path="orders" element={<Order />} />
+            <Route path="users" element={<Users />} />
             <Route path="summary" element={<Summary />} />
           </Route>
           <Route path="/" element={<Home />} />

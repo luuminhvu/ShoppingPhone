@@ -46,16 +46,6 @@ const Chart = () => {
     }
     fetchData();
   }, []);
-  const data = [
-    {
-      day: "Mon",
-      amount: 1000,
-    },
-    {
-      day: "Tue",
-      amount: 3000,
-    },
-  ];
 
   return (
     <>
