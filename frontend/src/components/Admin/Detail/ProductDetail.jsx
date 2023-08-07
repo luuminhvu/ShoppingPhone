@@ -22,7 +22,7 @@ const ProductDetail = () => {
       setLoading(false);
     }
     fetchData();
-  }, []);
+  }, [params.id]);
   const handleAddToCart = (products) => {
     dispatch(addToCart(products));
     navigate("/cart");

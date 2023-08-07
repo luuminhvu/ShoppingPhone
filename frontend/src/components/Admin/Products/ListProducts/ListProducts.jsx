@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../../../store/productSlice";
+import EditProduct from "../EditProducts/EditProducts";
 
 export default function ListProducts() {
   const { items } = useSelector((state) => state.products);
@@ -61,6 +62,7 @@ export default function ListProducts() {
             >
               Delete
             </Delete>
+            <EditProduct prodId={params.row.id} />
             <View
               onClick={() => {
                 navigate(`/product/${params.row.id}`);

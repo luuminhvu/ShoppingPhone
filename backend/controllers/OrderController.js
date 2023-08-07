@@ -12,6 +12,22 @@ export const getOrder = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+//update Order // Import your Order model
+
+export const updateOrder = async (req, res) => {
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true } // Ensure the updated data is returned and run model validations
+    );
+    res.status(200).send(updatedOrder);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+};
+
 export const UserCreatedCount = async (req, res) => {
   const previousMonth = moment()
     .month(moment().month() - 1)

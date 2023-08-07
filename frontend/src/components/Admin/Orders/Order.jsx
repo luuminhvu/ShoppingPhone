@@ -1,7 +1,8 @@
 import React from "react";
+import OrderList from "./OrderList/OrderList";
 
 const Order = () => {
-  return <div>Order</div>;
+  return <OrderList />;
 };
 
 export default Order;

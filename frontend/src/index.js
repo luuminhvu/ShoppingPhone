@@ -8,10 +8,12 @@ import productSlice, { fetchProducts } from "./store/productSlice";
 import { productApi } from "./store/productApi";
 import cartSlice from "./store/cartSlice";
 import authSlice, { loadUser } from "./store/authSlice";
+import orderSlice from "./store/orderSlice";
 const store = configureStore({
   reducer: {
     products: productSlice,
     cart: cartSlice,
+    order: orderSlice,
     auth: authSlice,
     [productApi.reducerPath]: productApi.reducer,
   },

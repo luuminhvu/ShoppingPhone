@@ -7,6 +7,7 @@ const initialState = {
   status: null,
   createStatus: null,
   deleteStatus: null,
+  editStatus: null,
 };
 export const fetchProducts = createAsyncThunk(
   "product/fetchProducts",
@@ -41,6 +42,23 @@ export const deleteProduct = createAsyncThunk(
         setHeaders()
       );
       toast.success("Product deleted successfully");
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  }
+);
+export const editProduct = createAsyncThunk(
+  "product/editProduct",
+  async (values) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/product/edit/${values.product._id}`,
+        values,
+        setHeaders()
+      );
+      toast.success("Product updated successfully");
       return response.data;
     } catch (error) {
       console.log(error);
@@ -84,6 +102,18 @@ const productSlide = createSlice({
     },
     [deleteProduct.rejected]: (state, action) => {
       state.deleteStatus = "rejected";
+    },
+    [editProduct.pending]: (state, action) => {
+      state.editStatus = "pending";
+    },
+    [editProduct.fulfilled]: (state, action) => {
+      state.editStatus = "success";
+      state.items = state.items.map((item) =>
+        item._id === action.payload._id ? action.payload : item
+      );
+    },
+    [editProduct.rejected]: (state, action) => {
+      state.editStatus = "rejected";
     },
   },
 });

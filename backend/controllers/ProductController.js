@@ -69,3 +69,53 @@ export const deleteProduct = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+//update product
+export const updateProduct = async (req, res) => {
+  try {
+    if (req.body.productImage) {
+      const destroyRes = await cloudinary.uploader.destroy(
+        req.body.product.image.public_id
+      );
+
+      if (destroyRes.result === "ok") {
+        const uploadRes = await cloudinary.uploader.upload(
+          req.body.productImage,
+          {
+            upload_preset: "ShoppingPhone",
+          }
+        );
+
+        if (uploadRes) {
+          const updatedProduct = await Product.findByIdAndUpdate(
+            req.params.id,
+            {
+              $set: {
+                ...req.body.product,
+                image: uploadRes,
+              },
+            },
+            { new: true }
+          );
+
+          res.status(200).json(updatedProduct);
+        }
+      } else {
+        res.status(500).json({ error: "Error destroying previous image" });
+      }
+    } else {
+      const updatedProduct = await Product.findByIdAndUpdate(
+        req.params.id,
+        {
+          $set: {
+            ...req.body.product,
+          },
+        },
+        { new: true }
+      );
+
+      res.status(200).json(updatedProduct);
+    }
+  } catch (error) {
+    res.status(500).json({ error: "An error occurred" });
+  }
+};
