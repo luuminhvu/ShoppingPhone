@@ -5,9 +5,10 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import moment from "moment";
 import { editOrder, orderFetch } from "../../../../store/orderSlice";
-
+import { useNavigate } from "react-router-dom";
 export default function OrderList() {
   const { list } = useSelector((state) => state.order);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(orderFetch());
@@ -58,7 +59,13 @@ export default function OrderList() {
             <Delete onClick={() => handleOrderDelivery(params.row.id)}>
               Delivered
             </Delete>
-            <View onClick={() => {}}>View</View>
+            <View
+              onClick={() => {
+                navigate(`/orders/${params.row.id}`);
+              }}
+            >
+              View
+            </View>
           </SCActions>
         );
       },

@@ -27,6 +27,18 @@ export const updateOrder = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+export const getOrderById = async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+    if (req.user._id !== order.userId && req.user.isAdmin === false) {
+      return res.status(403).json("You are not allowed to see this order");
+    }
+    res.status(200).send(order);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+};
 
 export const UserCreatedCount = async (req, res) => {
   const previousMonth = moment()

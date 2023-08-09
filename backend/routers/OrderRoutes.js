@@ -1,13 +1,15 @@
 import express from "express";
-import { isAdmin } from "../middlewares/auth.js";
+import { auth, isAdmin } from "../middlewares/auth.js";
 import {
   UserCreatedCount,
   getOrder,
+  getOrderById,
   getRevenue,
   getRevenueWeek,
   updateOrder,
 } from "../controllers/OrderController.js";
 const router = express.Router();
+router.get("/find/:id", auth, getOrderById);
 router.put("/:id", isAdmin, updateOrder);
 router.get("/stats", isAdmin, UserCreatedCount);
 router.get("/revenue/stats", isAdmin, getRevenue);

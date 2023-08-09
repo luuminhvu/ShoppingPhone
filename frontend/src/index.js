@@ -9,12 +9,14 @@ import { productApi } from "./store/productApi";
 import cartSlice from "./store/cartSlice";
 import authSlice, { loadUser } from "./store/authSlice";
 import orderSlice from "./store/orderSlice";
+import userSlice from "./store/userSlice";
 const store = configureStore({
   reducer: {
     products: productSlice,
     cart: cartSlice,
     order: orderSlice,
     auth: authSlice,
+    user: userSlice,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
