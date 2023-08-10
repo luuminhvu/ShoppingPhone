@@ -10,7 +10,7 @@ const initialState = {
 };
 export const userFetch = createAsyncThunk("user/userFetch", async () => {
   try {
-    const res = await axios.get("http://localhost:5000/users", setHeaders());
+    const res = await axios.get("http://localhost:5000/users/", setHeaders());
     return res.data;
   } catch (error) {
     console.log(error);
@@ -34,7 +34,7 @@ const userSlice = createSlice({
   name: "users",
   initialState,
   reducer: {},
-  extraReducer: {
+  extraReducers: {
     [userFetch.pending]: (state, action) => {
       state.status = "loading";
     },

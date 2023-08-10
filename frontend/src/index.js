@@ -16,7 +16,7 @@ const store = configureStore({
     cart: cartSlice,
     order: orderSlice,
     auth: authSlice,
-    user: userSlice,
+    users: userSlice,
     [productApi.reducerPath]: productApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

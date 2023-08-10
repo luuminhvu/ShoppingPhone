@@ -23,15 +23,15 @@ const Home = () => {
           <h2>New Arrival</h2>
           <div className="products">
             {data.map((product) => (
-              <div
-                onClick={() => {
-                  history(`/product/${product._id}`);
-                }}
-                className="product"
-                key={product._id}
-              >
+              <div className="product" key={product._id}>
                 <h3>{product.name}</h3>
-                <img src={product.image.url} alt={product.name} />
+                <img
+                  onClick={() => {
+                    history(`/product/${product._id}`);
+                  }}
+                  src={product.image.url}
+                  alt={product.name}
+                />
                 <div className="details">
                   <span className="product_desc">{product.desc}</span>
                   <span className="product_price">{product.price} VNĐ</span>

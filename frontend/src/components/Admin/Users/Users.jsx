@@ -1,7 +1,8 @@
 import React from "react";
+import ListUsers from "./ListUsers/ListUsers";
 
 const Users = () => {
-  return <div>Users</div>;
+  return <ListUsers />;
 };
 
 export default Users;
