@@ -18,7 +18,10 @@ import Users from "./components/Admin/Users/Users";
 import ProductDetail from "./components/Admin/Detail/ProductDetail";
 import OrderDetail from "./components/Admin/Detail/OrderDetail";
 import UserDetail from "./components/Admin/Detail/UserDetail";
+import { useSelector } from "react-redux";
+import OrderDetailCustomer from "./components/Order/OrderDetailCustomer";
 function App() {
+  const auth = useSelector((state) => state.auth);
   return (
     <div className="App">
       <BrowserRouter>
@@ -32,16 +35,20 @@ function App() {
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/orders/:id" element={<OrderDetail />} />
+          <Route path="/users/:id/orders" element={<OrderDetailCustomer />} />
           <Route path="/users/:id" element={<UserDetail />} />
-          <Route path="/admin" element={<Dashboard />}>
-            <Route path="products" element={<Products />}>
-              <Route index element={<ListProducts />} />
-              <Route path="create-product" element={<CreateProduct />} />
+          {auth.isAdmin && (
+            <Route path="/admin" element={<Dashboard />}>
+              <Route path="products" element={<Products />}>
+                <Route index element={<ListProducts />} />
+                <Route path="create-product" element={<CreateProduct />} />
+              </Route>
+              <Route path="orders" element={<Order />} />
+              <Route path="users" element={<Users />} />
+              <Route path="summary" element={<Summary />} />
             </Route>
-            <Route path="orders" element={<Order />} />
-            <Route path="users" element={<Users />} />
-            <Route path="summary" element={<Summary />} />
-          </Route>
+          )}
+          ;
           <Route path="/" element={<Home />} />
           <Route path="/*" element={<NotFound />} />
         </Routes>

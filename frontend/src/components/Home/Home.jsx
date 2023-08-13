@@ -20,7 +20,7 @@ const Home = () => {
         <p>An error occured</p>
       ) : (
         <>
-          <h2>New Arrival</h2>
+          <h2>Sản phẩm mới</h2>
           <div className="products">
             {data.map((product) => (
               <div className="product" key={product._id}>

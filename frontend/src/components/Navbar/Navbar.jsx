@@ -57,6 +57,7 @@ const Navbar = () => {
           ) : (
             <Link to={`/users/${auth._id}`}>{auth.name}</Link>
           )}
+          <Link to={`/users/${auth._id}/orders`}>Đơn hàng</Link>
           <Link
             onClick={() => {
               dispatch(logout());

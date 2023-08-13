@@ -39,6 +39,24 @@ export const getOrderById = async (req, res) => {
     res.status(500).send(error.message);
   }
 };
+export const getOrderByIdCustomer = async (req, res) => {
+  try {
+    const userId = req.query.userId;
+
+    // Kiểm tra quyền truy cập: người dùng chỉ có thể truy cập các đơn hàng của chính họ
+    if (req.user._id !== userId && req.user.isAdmin === false) {
+      return res
+        .status(403)
+        .json("You are not allowed to access orders for this user");
+    }
+
+    const orders = await Order.find({ userId: userId });
+    res.status(200).send(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error.message);
+  }
+};
 
 export const UserCreatedCount = async (req, res) => {
   const previousMonth = moment()
