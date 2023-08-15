@@ -29,42 +29,42 @@ export default function OrderList() {
   const columns = [
     { field: "id", headerName: "ID", width: 220 },
 
-    { field: "oname", headerName: "Name", width: 120 },
+    { field: "oname", headerName: "Tên", width: 120 },
     {
       field: "dStatus",
-      headerName: "Status",
+      headerName: "Trạng thái",
       width: 80,
     },
     {
       field: "amount",
-      headerName: "Amount",
+      headerName: "Tổng tiền",
       width: 100,
     },
     {
       field: "date",
-      headerName: "Date",
+      headerName: "Ngày đặt",
       width: 130,
     },
     {
       field: "actions",
-      headerName: "Actions",
+      headerName: "Tác vụ",
       sortable: false,
-      width: 250,
+      width: 280,
       renderCell: (params) => {
         return (
           <SCActions>
             <Dispatch onClick={() => handleOrderDispatch(params.row.id)}>
-              Dispatch
+              Đang giao hàng
             </Dispatch>
             <Delete onClick={() => handleOrderDelivery(params.row.id)}>
-              Delivered
+              Đã giao hàng
             </Delete>
             <View
               onClick={() => {
                 navigate(`/orders/${params.row.id}`);
               }}
             >
-              View
+              Xem
             </View>
           </SCActions>
         );

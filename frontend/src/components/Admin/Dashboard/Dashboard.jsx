@@ -18,19 +18,19 @@ const Dashboard = () => {
           activeClassName="active"
         >
           <GrOverview />
-          Summary
+          Tổng quan
         </NavLink>
         <NavLink to="/admin/products" activeClassName="active">
           <FaAppStore />
-          Products
+          Sản phẩm
         </NavLink>
         <NavLink to="/admin/orders" activeClassName="active">
           <FaRegClipboard />
-          Orders
+          Đơn hàng
         </NavLink>
         <NavLink to="/admin/users" activeClassName="active">
           <AiOutlineUser />
-          Users
+          Người dùng
         </NavLink>
       </div>
       <div className="dashboard-content">

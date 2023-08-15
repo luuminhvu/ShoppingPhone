@@ -70,7 +70,7 @@ export default function EditProduct({ prodId }) {
   return (
     <div>
       <ButtonI variant="outlined" onClick={handleClickOpen}>
-        Edit
+        Sửa
       </ButtonI>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>Chỉnh sửa sản phẩm</DialogTitle>

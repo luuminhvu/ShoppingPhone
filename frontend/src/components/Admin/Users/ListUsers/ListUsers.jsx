@@ -28,21 +28,21 @@ export default function ListUsers() {
     { field: "id", headerName: "ID", width: 220 },
     {
       field: "uname",
-      headerName: "Name",
+      headerName: "Tên",
       width: 110,
     },
     { field: "uemail", headerName: "Email", width: 160 },
     {
       field: "urole",
-      headerName: "Role",
+      headerName: "Quyền",
       width: 130,
       renderCell: (params) => {
         return (
           <div>
             {params.row.urole ? (
-              <Admin>Admin</Admin>
+              <Admin>Quản trị</Admin>
             ) : (
-              <Customer>Customer</Customer>
+              <Customer>Khách hàng</Customer>
             )}
           </div>
         );
@@ -50,7 +50,7 @@ export default function ListUsers() {
     },
     {
       field: "actions",
-      headerName: "Actions",
+      headerName: "Tác vụ",
       sortable: false,
       width: 170,
       renderCell: (params) => {
@@ -61,14 +61,14 @@ export default function ListUsers() {
                 handleDelete(params.row.id);
               }}
             >
-              Delete
+              Xoá
             </Delete>
             <View
               onClick={() => {
                 navigate(`/users/${params.row.id}`);
               }}
             >
-              View
+              Xem
             </View>
           </SCActions>
         );

@@ -26,7 +26,7 @@ export default function ListProducts() {
     { field: "id", headerName: "ID", width: 220 },
     {
       field: "imageUrl",
-      headerName: "Image",
+      headerName: "Ảnh",
       width: 110,
       renderCell: (params) => {
         return (
@@ -36,20 +36,20 @@ export default function ListProducts() {
         );
       },
     },
-    { field: "pname", headerName: "Name", width: 160 },
+    { field: "pname", headerName: "Tên", width: 160 },
     {
       field: "pdesc",
-      headerName: "Description",
+      headerName: "Mô tả",
       width: 130,
     },
     {
       field: "price",
-      headerName: "Price",
+      headerName: "Giá",
       width: 130,
     },
     {
       field: "actions",
-      headerName: "Actions",
+      headerName: "Tác vụ",
       sortable: false,
       width: 170,
       renderCell: (params) => {
@@ -60,7 +60,7 @@ export default function ListProducts() {
                 handleDelete(params.row.id);
               }}
             >
-              Delete
+              Xoá
             </Delete>
             <EditProduct prodId={params.row.id} />
             <View
@@ -68,7 +68,7 @@ export default function ListProducts() {
                 navigate(`/product/${params.row.id}`);
               }}
             >
-              View
+              Xem
             </View>
           </SCActions>
         );

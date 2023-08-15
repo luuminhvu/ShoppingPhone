@@ -70,9 +70,9 @@ const UserDetail = () => {
           <p>Loading</p>
         ) : (
           <form onSubmit={handleSubmit}>
-            <h3>Update User</h3>
-            {user.isAdmin ? <Admin>Admin</Admin> : <User>Customer</User>}
-            <label htmlFor="name">Name</label>
+            <h3>Cập nhật thông tin cá nhân</h3>
+            {user.isAdmin ? <Admin>Quản trị</Admin> : <User>Khách hàng</User>}
+            <label htmlFor="name">Họ tên</label>
             <input
               type="text"
               name="name"
@@ -86,12 +86,12 @@ const UserDetail = () => {
               value={user.email}
               onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">Mật khẩu</label>
             <input
               onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
             <button type="submit">
-              {updating ? "Updating" : "Update Profile"}
+              {updating ? "Đang cập nhật" : "Cập nhật"}
             </button>
           </form>
         )}

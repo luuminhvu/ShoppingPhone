@@ -29,7 +29,7 @@ const OrderDetailCustomer = () => {
       ) : (
         orderDetailCustomers.map((orderDetailCustomer, index) => (
           <div key={index} style={{ marginBottom: "20px" }}>
-            <h1>Chi tiết đơn hàng</h1>
+            <h2>Chi tiết đơn hàng của bạn</h2>
             <p>
               Trạng thái đơn hàng:{" "}
               {orderDetailCustomer.delivery_status === "pending" ? (

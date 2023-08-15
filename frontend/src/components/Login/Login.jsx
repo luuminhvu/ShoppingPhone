@@ -81,7 +81,7 @@ const Login = () => {
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
               <Link to="#" className="forgot-password">
-                Forgot your password?
+                Forgot your password? <h1>Admin: vu@mail.com - 1234567</h1>
               </Link>
               <button>
                 {auth.loginStatus === "pending"
