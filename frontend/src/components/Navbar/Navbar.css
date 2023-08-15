@@ -45,13 +45,29 @@
   justify-content: center;
 }
 
-.nav-bar__logged,
-.nav-bar__auth {
-  display: none; /* Hide these sections on smaller screens */
+/* Small screen (up to 468px) */
+@media (max-width: 468px) {
+  .nav-bar h2 {
+    font-size: 14px;
+  }
+  .nav-bar__admin {
+    display: none;
+  }
+  .nav-bar__order,
+  .nav-bar__user {
+    font-size: 14px;
+  }
+  .nav-bar__logged {
+    font-size: 14px;
+  }
+  .nav-bar__logged a,
+  .nav-bar__order a {
+    margin-right: 10px;
+  }
 }
 
+/* Medium and larger screens (768px and up) */
 @media (min-width: 768px) {
-  /* Apply styles for screens with a minimum width of 768px */
   .nav-bar h2 {
     font-size: 20px;
   }

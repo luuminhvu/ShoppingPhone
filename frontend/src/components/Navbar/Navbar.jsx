@@ -53,12 +53,20 @@ const Navbar = () => {
       {auth._id ? (
         <div className="nav-bar__logged">
           {auth.isAdmin ? (
-            <Link to="/admin/summary">Admin</Link>
+            <Link className="nav-bar__admin" to="/admin/summary">
+              Admin
+            </Link>
           ) : (
-            <Link to={`/users/${auth._id}`}>{auth.name}</Link>
+            <Link className="nav-bar__user" to={`/users/${auth._id}`}>
+              {auth.name}
+            </Link>
           )}
-          <Link to={`/users/${auth._id}/orders`}>Đơn hàng</Link>
+
+          <Link className="nav-bar__order" to={`/users/${auth._id}/orders`}>
+            Đơn hàng
+          </Link>
           <Link
+            className="nav-bar__logout"
             onClick={() => {
               dispatch(logout());
               toast.success("Đăng xuất thành công");

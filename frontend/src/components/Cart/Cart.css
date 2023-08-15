@@ -160,3 +160,58 @@
   font-weight: 300;
   color: rgb(84, 84, 84);
 }
+/* Media queries để làm cho giao diện đáp ứng */
+
+/* Màn hình nhỏ */
+@media (max-width: 768px) {
+  .cart-container {
+    padding: 1rem;
+  }
+  .cart-item,
+  .cart-container .cart-table .cart-titles {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 0.3rem;
+  }
+  .cart-item__product img {
+    width: 80px;
+    height: 80px;
+  }
+  .cart-item__product-info button,
+  .cart-item__quantity button {
+    font-size: 14px;
+  }
+  .cart-item__quantity button {
+    padding: 0.4rem 0.8rem;
+  }
+  .cart-clear,
+  .cart-checkout {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* Màn hình cực nhỏ */
+@media (max-width: 480px) {
+  .cart-item,
+  .cart-container .cart-table .cart-titles {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+  }
+  .cart-item__product img {
+    width: 60px;
+    height: 60px;
+  }
+  .cart-item__product-info button,
+  .cart-item__quantity button {
+    font-size: 12px;
+  }
+  .cart-item__quantity button {
+    padding: 0.3rem 0.6rem;
+  }
+  .cart-checkout__total {
+    font-size: 16px;
+  }
+  .cart-empty {
+    font-size: 16px;
+  }
+}
