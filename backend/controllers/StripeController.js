@@ -111,8 +111,7 @@ export const webhook = async (req, res) => {
   // Otherwise use the basic event deserialized with JSON.parse
   let data;
   let eventType;
-  const endpointSecret =
-    "whsec_2bb4f08a131d00a6ce9bc88f31362dca74b67b9fc002e79ac2fc155499a96592";
+  const endpointSecret = "whsec_qiBvihqWFqcgIMrONuN5qofDXT2H8SHC";
   if (endpointSecret) {
     let event;
     // Get the signature sent by Stripe
