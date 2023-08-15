@@ -16,7 +16,7 @@ const ProductDetail = () => {
     setLoading(true);
     async function fetchData() {
       const response = await axios.get(
-        `http://shoppingphone.onrender.com/product/find/${params.id}`
+        `https://shoppingphone.onrender.com/product/find/${params.id}`
       );
       setProducts(response.data);
       setLoading(false);

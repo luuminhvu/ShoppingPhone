@@ -18,7 +18,7 @@ export const register = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const token = await axios.post(
-        "http://shoppingphone.onrender.com/register",
+        "https://shoppingphone.onrender.com/register",
         {
           name: values.name,
           email: values.email,
@@ -37,7 +37,7 @@ export const login = createAsyncThunk(
   async (values, { rejectWithValue }) => {
     try {
       const token = await axios.post(
-        "http://shoppingphone.onrender.com/login",
+        "https://shoppingphone.onrender.com/login",
         {
           email: values.email,
           password: values.password,

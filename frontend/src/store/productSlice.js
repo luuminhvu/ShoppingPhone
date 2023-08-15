@@ -13,7 +13,7 @@ export const fetchProducts = createAsyncThunk(
   "product/fetchProducts",
   async () => {
     const response = await axios.get(
-      "http://shoppingphone.onrender.com/product"
+      "https://shoppingphone.onrender.com/product"
     );
     return response?.data;
   }
@@ -23,7 +23,7 @@ export const createProduct = createAsyncThunk(
   async (product) => {
     try {
       const response = await axios.post(
-        "http://shoppingphone.onrender.com/products",
+        "https://shoppingphone.onrender.com/products",
         product,
         setHeaders()
       );
@@ -40,7 +40,7 @@ export const deleteProduct = createAsyncThunk(
   async (id) => {
     try {
       const response = await axios.delete(
-        `http://shoppingphone.onrender.com/product/delete/${id}`,
+        `https://shoppingphone.onrender.com/product/delete/${id}`,
         setHeaders()
       );
       toast.success("Product deleted successfully");
@@ -56,7 +56,7 @@ export const editProduct = createAsyncThunk(
   async (values) => {
     try {
       const response = await axios.put(
-        `http://shoppingphone.onrender.com/product/edit/${values.product._id}`,
+        `https://shoppingphone.onrender.com/product/edit/${values.product._id}`,
         values,
         setHeaders()
       );

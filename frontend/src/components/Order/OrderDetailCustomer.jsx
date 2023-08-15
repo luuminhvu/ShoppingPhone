@@ -13,7 +13,7 @@ const OrderDetailCustomer = () => {
     async function fetchData() {
       setLoading(true);
       const response = await axios.get(
-        `http://shoppingphone.onrender.com/orders/findorder?userId=${params.id}`,
+        `https://shoppingphone.onrender.com/orders/findorder?userId=${params.id}`,
         setHeaders()
       );
       setOrderDetailCustomers(response.data);

@@ -8,7 +8,7 @@ const PayButton = ({ cartItems }) => {
   const handleCheckout = () => {
     axios
       .post(
-        "http://shoppingphone.onrender.com/stripe/create-checkout-session",
+        "https://shoppingphone.onrender.com/stripe/create-checkout-session",
         {
           cartItems,
           userId: user._id,
