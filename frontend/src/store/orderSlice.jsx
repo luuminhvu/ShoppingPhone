@@ -9,7 +9,10 @@ const initialState = {
 };
 export const orderFetch = createAsyncThunk("order/orderFetch", async () => {
   try {
-    const res = await axios.get("http://localhost:5000/orders", setHeaders());
+    const res = await axios.get(
+      "http://shoppingphone.onrender.com/orders",
+      setHeaders()
+    );
     return res.data;
   } catch (error) {
     console.log(error);
@@ -29,7 +32,7 @@ export const editOrder = createAsyncThunk(
 
     try {
       const res = await axios.put(
-        `http://localhost:5000/orders/${values.id}`,
+        `http://shoppingphone.onrender.com/orders/${values.id}`,
         newOrder,
         setHeaders()
       );

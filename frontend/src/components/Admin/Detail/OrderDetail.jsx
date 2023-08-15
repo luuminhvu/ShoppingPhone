@@ -13,7 +13,7 @@ const OrderDetail = () => {
       try {
         setLoading(true);
         const res = await axios.get(
-          `http://localhost:5000/orders/find/${params.id}`,
+          `http://shoppingphone.onrender.com/orders/find/${params.id}`,
           setHeaders()
         );
         setOrder(res.data);

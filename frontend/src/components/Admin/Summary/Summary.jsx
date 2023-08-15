@@ -25,7 +25,7 @@ const Summary = () => {
     async function fetchData() {
       try {
         const res = await axios.get(
-          "http://localhost:5000/users/stats",
+          "http://shoppingphone.onrender.com/users/stats",
           setHeaders()
         );
         res.data.sort(compare);
@@ -43,7 +43,7 @@ const Summary = () => {
     async function fetchData() {
       try {
         const res = await axios.get(
-          "http://localhost:5000/orders/stats",
+          "http://shoppingphone.onrender.com/orders/stats",
           setHeaders()
         );
         res.data.sort(compare);
@@ -61,7 +61,7 @@ const Summary = () => {
     async function fetchData() {
       try {
         const res = await axios.get(
-          "http://localhost:5000/orders/revenue/stats",
+          "http://shoppingphone.onrender.com/orders/revenue/stats",
           setHeaders()
         );
         res.data.sort(compare);

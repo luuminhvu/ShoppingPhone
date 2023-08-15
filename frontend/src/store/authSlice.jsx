@@ -17,11 +17,14 @@ export const register = createAsyncThunk(
   "auth/registerUser ",
   async (values, { rejectWithValue }) => {
     try {
-      const token = await axios.post("http://localhost:5000/register", {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      });
+      const token = await axios.post(
+        "http://shoppingphone.onrender.com/register",
+        {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        }
+      );
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error) {
@@ -33,10 +36,13 @@ export const login = createAsyncThunk(
   "auth/loginUser",
   async (values, { rejectWithValue }) => {
     try {
-      const token = await axios.post("http://localhost:5000/login", {
-        email: values.email,
-        password: values.password,
-      });
+      const token = await axios.post(
+        "http://shoppingphone.onrender.com/login",
+        {
+          email: values.email,
+          password: values.password,
+        }
+      );
       localStorage.setItem("token", token.data);
       return token.data;
     } catch (error) {

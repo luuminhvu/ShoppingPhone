@@ -10,7 +10,10 @@ const initialState = {
 };
 export const userFetch = createAsyncThunk("user/userFetch", async () => {
   try {
-    const res = await axios.get("http://localhost:5000/users/", setHeaders());
+    const res = await axios.get(
+      "http://shoppingphone.onrender.com/users/",
+      setHeaders()
+    );
     return res.data;
   } catch (error) {
     console.log(error);
@@ -21,7 +24,7 @@ export const deleteUser = createAsyncThunk(
   async (id, { getState }) => {
     try {
       const res = await axios.delete(
-        `http://localhost:5000/users/delete/${id}`,
+        `http://shoppingphone.onrender.com/users/delete/${id}`,
         setHeaders()
       );
       return res.data;

@@ -11,7 +11,7 @@ const Transactions = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          "http://localhost:5000/orders/?new=true",
+          "http://shoppingphone.onrender.com/orders/?new=true",
           setHeaders()
         );
         setTransactions(res.data);

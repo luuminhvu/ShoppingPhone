@@ -28,7 +28,7 @@ const UserDetail = () => {
     const fetchUser = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/users/find/${params.id}`,
+          `http://shoppingphone.onrender.com/users/find/${params.id}`,
           setHeaders()
         );
 
@@ -49,7 +49,7 @@ const UserDetail = () => {
     setUpdating(true); // [6
     try {
       await axios.put(
-        `http://localhost:5000/users/update/${params.id}`,
+        `http://shoppingphone.onrender.com/users/update/${params.id}`,
         user,
         setHeaders()
       );

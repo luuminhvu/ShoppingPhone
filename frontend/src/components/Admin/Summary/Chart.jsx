@@ -26,7 +26,7 @@ const Chart = () => {
       setLoading(true);
       try {
         const res = await axios.get(
-          "http://localhost:5000/orders/week-sales",
+          "http://shoppingphone.onrender.com/orders/week-sales",
           setHeaders()
         );
         res.data.sort(compare);
